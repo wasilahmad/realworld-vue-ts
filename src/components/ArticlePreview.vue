@@ -1,0 +1,50 @@
+<template>
+  <div class="article-preview">
+    <div class="article-meta">
+      <a href="profile.html"><img :src="article.author.image"/></a>
+      <div class="info">
+        <a href="" class="author">{{ article.author.username }}</a>
+        <span class="date">{{ article.createdAt | longDateFormat }}</span>
+      </div>
+      <button class="btn btn-outline-primary btn-sm pull-xs-right">
+        <i class="ion-heart"></i> {{ article.favoritesCount }}
+      </button>
+    </div>
+    <a href="" class="preview-link">
+      <h1>{{ article.title }}</h1>
+      <p>{{ article.description }}</p>
+      <span>Read more...</span>
+    </a>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Article } from "@/store/models/articles";
+
+@Component({
+  filters: {
+    longDateFormat(date: string) {
+      const d = new Date(date);
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+  }
+})
+export default class ArticlePreview extends Vue {
+  @Prop() article?: Article;
+}
+</script>

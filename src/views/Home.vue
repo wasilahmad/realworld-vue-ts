@@ -1,18 +1,72 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="home-page">
+    <div class="banner">
+      <div class="container">
+        <h1 class="logo-font">conduit</h1>
+        <p>A place to share your knowledge.</p>
+      </div>
+    </div>
+
+    <div class="container page">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="feed-toggle">
+            <ul class="nav nav-pills outline-active">
+              <li class="nav-item">
+                <a class="nav-link disabled" href="">Your Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="">Global Feed</a>
+              </li>
+            </ul>
+          </div>
+          <ArticlePreview
+            :article="article"
+            v-for="article in feed"
+            :key="article.slug"
+          />
+        </div>
+
+        <div class="col-md-3">
+          <div class="sidebar">
+            <p>Popular Tags</p>
+
+            <div class="tag-list">
+              <a href="" class="tag-pill tag-default">programming</a>
+              <a href="" class="tag-pill tag-default">javascript</a>
+              <a href="" class="tag-pill tag-default">emberjs</a>
+              <a href="" class="tag-pill tag-default">angularjs</a>
+              <a href="" class="tag-pill tag-default">react</a>
+              <a href="" class="tag-pill tag-default">mean</a>
+              <a href="" class="tag-pill tag-default">node</a>
+              <a href="" class="tag-pill tag-default">rails</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { Component, Vue } from "vue-property-decorator";
+import ArticlePreview from "@/components/ArticlePreview.vue";
+import articles from "@/store/modules/articles";
+import { Article } from "@/store/models/articles";
 
-export default {
-  name: "Home",
+@Component({
   components: {
-    HelloWorld
+    ArticlePreview
   }
-};
+})
+export default class Home extends Vue {
+  feed: Article[] = [];
+
+  created() {
+    articles.refreshGlobalFeed().then(() => {
+      this.feed = articles.globalFeed;
+    });
+  }
+}
 </script>
