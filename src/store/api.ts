@@ -33,7 +33,7 @@ export async function fetchProfile( username: string): Promise<Profile> {
     return (response.data as ProfileResponse).profile
 }
 
-export async function getGlobalFeed() {
+export async function getFeed() {
     const response = await conduitApi.get('/articles')
     return response.data as ArticlesResponse;
 }
