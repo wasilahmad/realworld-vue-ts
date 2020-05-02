@@ -2,9 +2,9 @@
 
 
 ### Demo and Reference
-* [Live Demo :](https://cli.vuejs.org/config/)\
-* [Reference Demo :](http://demo.realworld.io/#/)\
-* [Starter Kit:](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md)\
+* [Live Demo :](https://cli.vuejs.org/config/)
+* [Reference Demo :](http://demo.realworld.io/#/)
+* [Starter Kit:](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md)
 * [API:](https://github.com/gothinkster/realworld/blob/master/api/README.md)
 * [API Demo:](https://conduit.productionready.io/api/profiles/wasil)
 
