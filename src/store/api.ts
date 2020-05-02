@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User, UserSubmit, UserResponse } from '@/store/models/users';
+import { User, UserSubmit, UserResponse, Profile, ProfileResponse } from '@/store/models/users';
 import { ArticlesResponse } from '@/store/models/articles';
 
 // Set config defaults when creating the instance
@@ -21,13 +21,17 @@ export async function loginUser( user: UserSubmit ): Promise<User> {
         const response = await conduitApi.post('/users/login', {
             user,
         });
-        console.log(response)
+        // console.log(response)
         return (response.data as UserResponse).user; 
     // } catch(err) {
     //     console.error(err);
     // }       
 }
 
+export async function fetchProfile( username: string): Promise<Profile> {
+    const response = await conduitApi.get(`/profiles/${username}`)
+    return (response.data as ProfileResponse).profile
+}
 
 export async function getGlobalFeed() {
     const response = await conduitApi.get('/articles')

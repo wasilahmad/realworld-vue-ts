@@ -8,9 +8,9 @@
             <router-link to="/register">Not have an account?</router-link>
           </p>
 
-          <!-- <ul class="error-messages">
-            <li>That email is already taken</li>
-          </ul> -->
+          <ul class="error-messages" v-if="serverError">
+            <li>{{ serverError }}</li>
+          </ul>
 
           <form>
             <fieldset class="form-group">
@@ -50,12 +50,19 @@ import users from "@/store/modules/users";
 export default class Login extends Vue {
   email = "";
   password = "";
+  serverError = "";
 
   login() {
-    users.login({
-      email: this.email,
-      password: this.password
-    });
+    users
+      .login({
+        email: this.email,
+        password: this.password
+      })
+      .then(() => this.$router.push("/"))
+      .catch(err => {
+        console.error(err.message);
+        this.serverError = err.message;
+      });
   }
 }
 </script>

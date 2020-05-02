@@ -21,9 +21,19 @@ const routes: Array<RouteConfig> = [
     component: () => import("@/views/Register.vue")
   },
   {
+    path: "/editor",
+    name: "Editor",
+    component: () => import("@/views/Editor.vue")
+  },
+  {
     path: "/settings",
     name: "Settings",
     component: () => import("@/views/Settings.vue")
+  },
+  {
+    path: "/@:username",
+    name: "Profile",
+    component: () => import("@/views/Profile.vue")
   }
 ];
 

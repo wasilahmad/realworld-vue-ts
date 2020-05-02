@@ -21,3 +21,7 @@ export interface UserSubmit {
 export interface UserResponse {
     user: User
 }
+
+export interface ProfileResponse {
+    profile: Profile
+}
